@@ -2,7 +2,7 @@ public class Supplier extends Customer {
     private String phone;
     private boolean active;
 
-    public Supplier(int id, String name, String phone, boolean active){
+    public Supplier(int id, String name, String phone){
         super(id,name);
         setPhone(phone);
         this.active=true;
@@ -15,13 +15,13 @@ public class Supplier extends Customer {
         return active;
     }
 
-    public void deactive(){
+    public void deactivate(){
         active = false;
     }
 
     public void setPhone(String phone){
-        if(phone==null||phone.matches("\"\\\\d{7,10}\"")){
-            throw new IllegalArgumentException("phone can't be null and it must have between 7-10 nums ");
+        if(phone==null||phone.matches("\"\\\\d{7,15}\"")){
+            throw new IllegalArgumentException("phone can't be null and it must have between 7-15 nums ");
         }
         this.phone = phone;
     }
