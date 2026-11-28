@@ -17,11 +17,11 @@ public class InventoryMovement {
             throw new IllegalArgumentException("medication can't be null");
         }
         this.medication=medication;
-        if(quantity<0){
+        if(quantity<=0){
             throw new IllegalArgumentException("quantity can't be negative");
         }
         this.quantity=quantity;
-        if(date!=null||date.isAfter(LocalDateTime.now())){
+        if(date==null||date.isAfter(LocalDateTime.now())){
             throw new IllegalArgumentException("date can't be future date and can't be null");
         }
         this.date=date;
@@ -37,7 +37,7 @@ public class InventoryMovement {
         return type;
     }
 
-    public Medication medication(){
+    public Medication getMedication(){
         return medication;
     }
 
@@ -57,6 +57,8 @@ public class InventoryMovement {
     public enum MovementType{
         ENTRY,
         EXIT,
-        ADJUSTMENT
+        ADJUSTMENT_IN,
+        ADJUSTMENT_OUT
+
     }
 }

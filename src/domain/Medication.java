@@ -41,6 +41,7 @@ public class Medication {
     public Supplier getSupplier(){
         return supplier;
     }
+   
 //setters
     public void setId(int id){
         if(id<0){
@@ -69,6 +70,9 @@ public class Medication {
         this.minStock=minStock;
     }
     public void setSupplier(Supplier supplier){
+        if(supplier==null){
+            throw new IllegalArgumentException("Supplier can't be null");
+        }
         this.supplier=supplier;
     }
 //methods
@@ -85,7 +89,7 @@ public class Medication {
         this.stock += quantity;
     }
     public void decreaseStock(int quantity){
-        if(quantity<=0||isActive()==false){
+        if(quantity<=0 || isActive()==false){
             throw new IllegalArgumentException("quantity can't be negative or 0, product have to be available");
         }
         if(quantity>this.stock){

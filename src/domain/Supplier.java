@@ -19,8 +19,16 @@ public class Supplier extends Customer {
         active = false;
     }
 
+    @Override 
+    public void setName(String name){
+        if(name==null||!name.trim().matches("^(?=.*\\p{L})[\\p{L}0-9.,&'()/+-]+(?: [\\p{L}0-9.,&'()/+-]+)*$")){ //it allows letters digits and . , & ' ( ) / + -
+            throw new IllegalArgumentException("supplier name must contain at least one letter and only letters, digits and . , & ' ( ) / + -");
+        }
+        this.name=name.trim();
+    }
+
     public void setPhone(String phone){
-        if(phone==null||phone.matches("\"\\\\d{7,15}\"")){
+        if(phone==null||!phone.matches("\\d{7,15}")){
             throw new IllegalArgumentException("phone can't be null and it must have between 7-15 nums ");
         }
         this.phone = phone;
